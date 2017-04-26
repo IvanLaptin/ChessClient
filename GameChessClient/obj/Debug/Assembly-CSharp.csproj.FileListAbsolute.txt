@@ -1,0 +1,1 @@
+C:\Users\26130\Documents\GameChess\GameChessClient\obj\Debug\Assembly-CSharp.csprojResolveAssemblyReference.cache
