@@ -8,59 +8,53 @@ public class Main : MonoBehaviour
 {
     public static Main main;
 
-    public bool registr = false;
+    public bool registr;
+    public bool registrAnswer;
 
-    
-	void Start ()
+    void Start ()
     {
         main = new Main();
-        var client = new Client();
-
-        client.MessageReceived += Client_MessageReceived;
-        
-        client.Connect();
+        Client.currentClient = new Client();
+        Client.currentClient.Connect();
 
         StartCoroutine(DoCheck());
     }
 
     IEnumerator DoCheck()
     {
-        if(main.registr == true)
+        while (true)
         {
 
+            if (main.registr == true)
+            {
+                print(3);
+                main.registr = false;
+            }
+            else if(main.registrAnswer == true)
+            {
+                main.registrAnswer = false;
+            }
 
-            main.registr = false;
+            yield return null;
+
         }
-
-
-        else yield return new WaitForSeconds(.1f);
+        
     }
 
-    public void Client_MessageReceived(NetworkLevel.User user, NetworkLevel.Messages.Message message)
+    public void Test()
     {
+        print(2);
         
-        if(message.Type == MessageType.Registration)
-        {
-            main.registr = true;
-        }
+        
+        main.registr = true;
+    }
 
 
-        //switch (message.Type)
-        //{
-        //    case MessageType.Registration:
-        //        break;
-        //    case MessageType.RegistrationAnswer:
-        //        //print("RegistrationAnswer - " + (message as MessageRegistrationAnswer));
-        //        break;
-        //    case MessageType.LogIn:
-        //        break;
-        //    case MessageType.LogInAnswer:
-        //        //print("MessageLogInAnswer - " + (message as MessageLogInAnswer));
-        //        break;
-        //    default:
-        //        break;
-        //}
+    public void RegAnswer(bool Reason)
+    {
+        print(Reason);
 
+        main.registrAnswer = true;
     }
 
 }

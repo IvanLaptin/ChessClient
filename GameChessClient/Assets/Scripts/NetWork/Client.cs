@@ -9,7 +9,12 @@ using UnityEngine;
 
 public class Client : User
 {
-    public static Client currentClient = new Client();
+    public static Client currentClient { get; set; }
+
+    static Client()
+    {
+        currentClient = new Client();
+    }
 
     public void Connect()
     {

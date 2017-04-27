@@ -20,13 +20,49 @@ public class RegistrationController : MonoBehaviour
 
     void Start ()
     {
-		
+        Client.currentClient.MessageReceived += CurrentClient_MessageReceived;
+       // print(1);
+        Main.main.Test();
+
 	}
-	
-	void Update ()
+
+    private void CurrentClient_MessageReceived(NetworkLevel.User user, Message message)
     {
-		
-	}
+        switch (message.Type)
+        {
+            case MessageType.Registration:
+                break;
+            case MessageType.RegistrationAnswer:
+                Main.main.RegAnswer((message as MessageRegistrationAnswer).Answer);
+                break;
+            case MessageType.LogIn:
+                break;
+            case MessageType.LogInAnswer:
+                break;
+            case MessageType.LogOut:
+                break;
+            case MessageType.StartGameWithTheBot:
+                break;
+            case MessageType.StartGameOnline:
+                break;
+            case MessageType.StartGameOnlineAnswer:
+                break;
+            case MessageType.Move:
+                break;
+            case MessageType.FinishGame:
+                break;
+            case MessageType.YourMove:
+                break;
+            case MessageType.GetGameTables:
+                break;
+            case MessageType.ChangePasswordSettings:
+                break;
+            case MessageType.Disconnect:
+                break;
+            default:
+                break;
+        }
+    }
 
 
     public void f_Registration()
