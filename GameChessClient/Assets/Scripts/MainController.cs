@@ -1,28 +1,28 @@
-﻿using System.Collections;
+﻿using NetworkLevel.Messages;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using NetworkLevel;
-using NetworkLevel.Messages;
 
-public class Main : MonoBehaviour
+public class MainController : MonoBehaviour
 {
-    public static Main main;
 
-    public Main()
+    public static MainController main;
+
+    public MainController()
     {
-        main = new Main();
+        main = new MainController();
 
         var client = new Client();
         client.MessageReceived += Client_MessageReceived;
 
         client.Connect();
-    }   
+    }
 
 
-    
-	void Start ()
+
+    void Start()
     {
-        
+
     }
 
 
@@ -53,11 +53,5 @@ public class Main : MonoBehaviour
     {
 
     }
-
-    
-
-
-
-
 
 }

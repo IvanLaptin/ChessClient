@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class RegistrationController : MonoBehaviour {
+public class RegistrationController : MonoBehaviour
+{
 
     public InputField mc_login;
     public InputField mc_name;
@@ -11,12 +12,13 @@ public class RegistrationController : MonoBehaviour {
     public InputField mc_password;
     public InputField mc_returnPassword;
 
-    void Start () {
+    void Start ()
+    {
 		
 	}
 	
-	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
 		
 	}
 
@@ -29,8 +31,6 @@ public class RegistrationController : MonoBehaviour {
            mc_password.text.Length > 0 && mc_returnPassword.text.Length > 0)
         {
             print(22);
-
-
 
         }
 
