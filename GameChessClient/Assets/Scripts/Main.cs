@@ -8,56 +8,59 @@ public class Main : MonoBehaviour
 {
     public static Main main;
 
-    public Main()
-    {
-        main = new Main();
-
-        var client = new Client();
-        client.MessageReceived += Client_MessageReceived;
-
-        client.Connect();
-    }   
-
+    public bool registr = false;
 
     
 	void Start ()
     {
+        main = new Main();
+        var client = new Client();
+
+        client.MessageReceived += Client_MessageReceived;
         
+        client.Connect();
+
+        StartCoroutine(DoCheck());
     }
 
-
-
-
-    private void Client_MessageReceived(NetworkLevel.User user, NetworkLevel.Messages.Message message)
+    IEnumerator DoCheck()
     {
-
-        switch (message.Type)
+        if(main.registr == true)
         {
-            case MessageType.Registration:
-                break;
-            case MessageType.RegistrationAnswer:
-                //print("RegistrationAnswer - " + (message as MessageRegistrationAnswer));
-                break;
-            case MessageType.LogIn:
-                break;
-            case MessageType.LogInAnswer:
-                //print("MessageLogInAnswer - " + (message as MessageLogInAnswer));
-                break;
-            default:
-                break;
+
+
+            main.registr = false;
         }
 
+
+        else yield return new WaitForSeconds(.1f);
     }
 
-    public void Test()
+    public void Client_MessageReceived(NetworkLevel.User user, NetworkLevel.Messages.Message message)
     {
+        
+        if(message.Type == MessageType.Registration)
+        {
+            main.registr = true;
+        }
+
+
+        //switch (message.Type)
+        //{
+        //    case MessageType.Registration:
+        //        break;
+        //    case MessageType.RegistrationAnswer:
+        //        //print("RegistrationAnswer - " + (message as MessageRegistrationAnswer));
+        //        break;
+        //    case MessageType.LogIn:
+        //        break;
+        //    case MessageType.LogInAnswer:
+        //        //print("MessageLogInAnswer - " + (message as MessageLogInAnswer));
+        //        break;
+        //    default:
+        //        break;
+        //}
 
     }
-
-    
-
-
-
-
 
 }

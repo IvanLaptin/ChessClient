@@ -9,13 +9,15 @@ using UnityEngine;
 
 public class Client : User
 {
+    public static Client currentClient = new Client();
+
     public void Connect()
     {
         try
         {
             if (clientSocket != null) return;
 
-            EndPoint addr = new IPEndPoint(IPAddress.Parse("10.6.6.121"), 2017);
+            EndPoint addr = new IPEndPoint(IPAddress.Parse("10.6.6.7"), 2017);
             clientSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 
             clientSocket.Connect(addr);
